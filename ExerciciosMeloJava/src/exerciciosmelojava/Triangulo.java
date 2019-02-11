@@ -113,20 +113,77 @@ public class Triangulo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                
-        //REGRAS
-        
+       //REGRAS
+       //LADO A 
+       
+       double ladoA;
+       ladoA = Integer.parseInt(jTextFieldLadoA.getText()); 
+           
+             
        if (jTextFieldLadoA.getText().equals(" ")){
        JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
            return;
        }
-        
-       double ladoA;
-       ladoA = Integer.parseInt(jTextFieldLadoA.getText());
        
+       /*if (jTextFieldLadoA.getText().length()!=0){
+       JOptionPane.showMessageDialog(rootPane, "Erro: informe apenas números");
+           return;
+       }*/
+              
        if (ladoA <= 0){
        JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
+       return;
         }
         
+       // LADO B
+       
+       double ladoB;
+       ladoB = Integer.parseInt(jTextFieldLadoB.getText()); 
+           
+             
+       if (jTextFieldLadoB.getText().equals(" ")){
+       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
+           return;
+       }
+       
+       /*if (jTextFieldLadoB.getText().length()!=0){
+       JOptionPane.showMessageDialog(rootPane, "Erro: informe apenas números");
+           return;
+       }*/
+              
+       if (ladoB <= 0){
+       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
+       return;
+        }
+       
+       
+       // LADO C
+       
+       double ladoC;
+       ladoC = Integer.parseInt(jTextFieldLadoA.getText()); 
+           
+             
+       if (jTextFieldLadoC.getText().equals(" ")){
+       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
+           return;
+       }
+       
+       /*if (jTextFieldLadoC.getText().length()!=0){
+       JOptionPane.showMessageDialog(rootPane, "Erro: informe apenas números");
+           return;
+       }*/
+              
+       if (ladoC <= 0){
+       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
+       return;
+        }
+       
+       //VERIFICAÇÃO VALIDADE DOS LADOS
+       
+       
+       
+       //VERIFICAÇÃO TIPO DO TRIâNGLULO
+       
         //LINHA DE FEEDBACK AO USUÁRIO
         
         JOptionPane.showMessageDialog(rootPane, "VERIFICAÇÃO REALIZADA COM SUCESSO!");
