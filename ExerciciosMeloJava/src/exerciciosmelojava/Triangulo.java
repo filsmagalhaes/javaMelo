@@ -5,6 +5,7 @@
  */
 package exerciciosmelojava;
 
+import com.sun.javafx.iio.jpeg.JPEGImageLoader;
 import javax.swing.JOptionPane;
 
 /**
@@ -112,83 +113,118 @@ public class Triangulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-               
-       //REGRAS
-       //LADO A 
-       
-       double ladoA;
-       ladoA = Integer.parseInt(jTextFieldLadoA.getText()); 
-           
-             
-       if (jTextFieldLadoA.getText().equals(" ")){
-       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
-           return;
-       }
-       
-       /*if (jTextFieldLadoA.getText().length()!=0){
-       JOptionPane.showMessageDialog(rootPane, "Erro: informe apenas números");
-           return;
-       }*/
-              
-       if (ladoA <= 0){
-       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
-       return;
+
+        //REGRAS
+        //LADO A 
+        double ladoA;
+        try {
+            ladoA = Integer.parseInt(jTextFieldLadoA.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Infomar apenas números para o lado A");
+            jTextFieldLadoA.requestFocus(); //LEVA O USUÁRIO A INSERIR UM NUMERO VALIDO NO LOCAL A
+            return;
         }
         
-       // LADO B
-       
-       double ladoB;
-       ladoB = Integer.parseInt(jTextFieldLadoB.getText()); 
-           
-             
-       if (jTextFieldLadoB.getText().equals(" ")){
-       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
-           return;
-       }
-       
-       /*if (jTextFieldLadoB.getText().length()!=0){
+
+        if (jTextFieldLadoA.getText().equals(" ")) {
+            JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
+            return;
+        }
+
+        /*if (jTextFieldLadoA.getText().length()!=0){
        JOptionPane.showMessageDialog(rootPane, "Erro: informe apenas números");
            return;
        }*/
-              
-       if (ladoB <= 0){
-       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
-       return;
+        if (ladoA <= 0) {
+            JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
+            return;
         }
-       
-       
-       // LADO C
-       
-       double ladoC;
-       ladoC = Integer.parseInt(jTextFieldLadoA.getText()); 
-           
-             
-       if (jTextFieldLadoC.getText().equals(" ")){
-       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
-           return;
-       }
-       
-       /*if (jTextFieldLadoC.getText().length()!=0){
+
+        // LADO B
+        
+        double ladoB;
+        try {
+            ladoB = Integer.parseInt(jTextFieldLadoB.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Infomar apenas números para o lado B");
+            jTextFieldLadoB.requestFocus(); //LEVA O USUÁRIO A INSERIR UM NUMERO VALIDO NO LOCAL B
+            return;
+        }
+
+        if (jTextFieldLadoB.getText().equals(" ")) {
+            JOptionPane.showMessageDialog(rootPane, "Erro: É necessário inserir um número válido");
+            return;
+        }
+
+        /*if (jTextFieldLadoB.getText().length()!=0){
        JOptionPane.showMessageDialog(rootPane, "Erro: informe apenas números");
            return;
        }*/
-              
-       if (ladoC <= 0){
-       JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
-       return;
+        if (ladoB <= 0) {
+            JOptionPane.showMessageDialog(rootPane, "Erro: É necessário um número positivo.");
+            return;
         }
-       
-       //VERIFICAÇÃO VALIDADE DOS LADOS
-       
-       
-       
-       //VERIFICAÇÃO TIPO DO TRIâNGLULO
-       
+
+        // LADO C
+        
+         double ladoC;
+        try {
+            ladoC = Integer.parseInt(jTextFieldLadoC.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Infomar apenas números para o lado C");
+            jTextFieldLadoC.requestFocus(); //LEVA O USUÁRIO A INSERIR UM NUMERO VALIDO NO LOCAL C
+            return;
+        }
+
+        if (jTextFieldLadoC.getText().equals(" ")) {
+            JOptionPane.showMessageDialog(rootPane, "É necessário inserir um número válido");
+            return;
+        }
+
+        /*if (jTextFieldLadoC.getText().length()!=0){
+       JOptionPane.showMessageDialog(rootPane, "Erro: informe apenas números");
+           return;
+       }*/
+        if (ladoC <= 0) {
+            JOptionPane.showMessageDialog(rootPane, "É necessário um número positivo.");
+            return;
+        }
+
+        //VERIFICAÇÃO VALIDADE DOS LADOS
+        /*
+       | b - c | < a < b + c
+       | a - c | < b < a + c
+       | a - b | < c < a + b
+         */
+        if (!((ladoB - ladoC) < ladoA && ladoA < (ladoB + ladoC))) {
+            JOptionPane.showMessageDialog(rootPane, "Os números informados não obedecem a condição de existencia do triângulo");
+            return;
+        }
+
+        if (!((ladoA - ladoC) < ladoB && ladoB < (ladoA + ladoC))) {
+            JOptionPane.showMessageDialog(rootPane, "Os números informados não obedecem a condição de existencia do triângulo");
+            return;
+        }
+
+        if (!((ladoA - ladoB) < ladoC && ladoC < (ladoA + ladoB))) {
+            JOptionPane.showMessageDialog(rootPane, "Os números informados não obedecem a condição de existencia do triângulo");
+            return;
+        }
+
+        //VERIFICAÇÃO TIPO DO TRIâNGLULO
+        
+        if (ladoA == ladoB && ladoA == ladoC) {
+            JOptionPane.showMessageDialog(rootPane, "É um triângulo Equilátero!");
+        }else if (ladoA != ladoB && ladoA != ladoC && ladoB != ladoC) {
+            JOptionPane.showMessageDialog(rootPane, "É um triângulo Escaleno!");
+        }else
+            JOptionPane.showMessageDialog(rootPane, "É um triângulo Isosceles!");
+    
+
         //LINHA DE FEEDBACK AO USUÁRIO
-        
         JOptionPane.showMessageDialog(rootPane, "VERIFICAÇÃO REALIZADA COM SUCESSO!");
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
