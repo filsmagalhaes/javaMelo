@@ -32,17 +32,17 @@ public class DadosResponsavel extends Conexao{
         //passando os valores para os parametros
         preparedStatement.setInt(1, resp.getCpf_resp());
         preparedStatement.setString(2, resp.getNome_resp());
-        preparedStatement.setDate(2, resp.getData_nasc());
-        preparedStatement.setString(3, resp.getTelefone());
-        preparedStatement.setString(4, resp.getEmail());
-        preparedStatement.setString(5, resp.getEndereco());
-        preparedStatement.setString(6, resp.getCidade());
-        preparedStatement.setString(7, resp.getBairro());
-        preparedStatement.setString(8, resp.getComplemento());
-        preparedStatement.setInt(9, resp.getCep());
-        preparedStatement.setString(10, resp.getBanco());
-        preparedStatement.setInt(11, resp.getAgencia());
-        preparedStatement.setInt(12, resp.getConta());
+        preparedStatement.setDate(3, resp.getData_nasc());
+        preparedStatement.setString(4, resp.getTelefone());
+        preparedStatement.setString(5, resp.getEmail());
+        preparedStatement.setString(6, resp.getEndereco());
+        preparedStatement.setString(7, resp.getCidade());
+        preparedStatement.setString(8, resp.getBairro());
+        preparedStatement.setString(9, resp.getComplemento());
+        preparedStatement.setInt(10, resp.getCep());
+        preparedStatement.setString(11, resp.getBanco());
+        preparedStatement.setInt(12, resp.getAgencia());
+        preparedStatement.setInt(13, resp.getConta());
         
         // execute insert SQL stetement
         preparedStatement.executeUpdate();

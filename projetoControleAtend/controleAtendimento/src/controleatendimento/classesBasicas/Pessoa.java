@@ -16,8 +16,8 @@ public abstract class Pessoa {
     
 private int cpf_resp;
 private String nome_resp;
-
-    
+private int cpf_client;
+private String nome_client;    
 private int cpf_terapeuta;
 private String nome_terapeuta;
 private Date data_nasc;
@@ -153,6 +153,20 @@ private int conta;
     public void setConta(int conta) {
         this.conta = conta;
     }
-    
+    public int getCpf_client() {
+        return cpf_client;
+    }
+
+    public void setCpf_client(int cpf_client) {
+        this.cpf_client = cpf_client;
+    }
+
+    public String getNome_client() {
+        return nome_client;
+    }
+
+    public void setNome_client(String nome_client) {
+        this.nome_client = nome_client;
+    }
        
 }

@@ -5,7 +5,6 @@
  */
 package controleatendimento.classesDados;
 
-import controleatendimento.classesBasicas.Responsavel;
 import controleatendimento.classesBasicas.Terapeuta;
 import controleatendimento.conexao.Conexao;
 import java.sql.PreparedStatement;
