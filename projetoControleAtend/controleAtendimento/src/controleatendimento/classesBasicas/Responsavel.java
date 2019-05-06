@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package controleatendimento.classesBasicas;
-
-import controleatendimento.classesBasicas.Pessoa;
-
 /**
  *
  * @author aluno
  */
-public class Responsavel extends Pessoa {
+public class Responsavel extends Pessoa { 
+ 
     
 }
