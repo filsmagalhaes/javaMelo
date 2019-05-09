@@ -21,10 +21,10 @@ public class Conexao {
     public Connection conn;
     private final String DRIVER_MYSQL = "com.mysql.jdbc.Driver";
     private final String LOCAL_SERVIDOR = "localhost";
-    private final String BANCO_DE_DADOS = "TeAmoProfessorMelo";
+    private final String BANCO_DE_DADOS = "controleatendimento";
     private final String PORTA_BANCO = "3306";
     private final String USUARIO = "root";
-    private final String SENHA = "";
+    private final String SENHA = "4321";
 
     public Connection conectar() throws Exception {
         return this.conectarMySql();
@@ -36,9 +36,9 @@ public class Conexao {
     
     
      private Connection conectarMySql() throws Exception {
-        Class.forName(DRIVER_MYSQL).newInstance();
-        String url = "jdbc:mysql://"+LOCAL_SERVIDOR+":"+PORTA_BANCO+"/"+BANCO_DE_DADOS;
-        conn = (Connection) DriverManager.getConnection(url , USUARIO, SENHA);
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        String url = "jdbc:mysql://"+"localhost"+":"+"3306"+"/"+"controleatendimento";
+        conn = (Connection) DriverManager.getConnection(url , "root", "4321");
         return conn;
     }
      

@@ -114,13 +114,8 @@ public class DadosCliente extends Conexao{
             client.setData_nasc(leitor.getDate("data_nasc"));
             client.setNome_client(leitor.getString("nome"));
             retorno.add(client);
-        }
-        
-        /**
-        
-        preparedStatement.setString(6, client.getNome_client());
-         */
-                
+        }      
+                    
          
         //fechando a conexão com o banco de dados
         super.desconectar();

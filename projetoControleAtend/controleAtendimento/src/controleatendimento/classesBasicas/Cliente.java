@@ -6,6 +6,7 @@
 package controleatendimento.classesBasicas;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,6 +18,8 @@ private int idade_corrigida;
 private int idade;
 private String descricao_diagnostico;
 private Responsavel responsavel;
+
+private ArrayList<Terapeuta> listaTerapeutas;
 
 
     public int getIdade_corrigida() {

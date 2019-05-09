@@ -6,6 +6,7 @@
 package controleatendimento.classesBasicas;
 
 import controleatendimento.classesBasicas.Pessoa;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,8 +16,9 @@ public class Terapeuta extends Pessoa{
 
     private String especialidade;
     
+    private ArrayList<Cliente> listaClientes;
     
-        
+            
     public String getEspecialidade() {
         return especialidade;
     }

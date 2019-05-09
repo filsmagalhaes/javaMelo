@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package controleatendimento.classesBasicas;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author aluno
  */
 public class Responsavel extends Pessoa { 
  
+private ArrayList<Cliente> listaClientes;
     
 }
