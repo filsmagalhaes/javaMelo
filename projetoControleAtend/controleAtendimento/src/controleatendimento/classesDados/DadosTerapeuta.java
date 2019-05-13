@@ -30,8 +30,8 @@ public class DadosTerapeuta extends Conexao {
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setInt(1, ter.getCpf_terapeuta());
-        preparedStatement.setString(2, ter.getNome_terapeuta());
+        preparedStatement.setInt(1, ter.getCpf());
+        preparedStatement.setString(2, ter.getNome());
         preparedStatement.setString(3, ter.getEspecialidade());
         preparedStatement.setDate(4, ter.getData_nasc()); 
         preparedStatement.setString(5, ter.getTelefone());
@@ -58,7 +58,7 @@ public class DadosTerapeuta extends Conexao {
   public void removerResponsavel (Terapeuta ter) throws SQLException, Exception {        
         String sql = "DELETE FROM terapeuta WHERE cpf_terapeuta = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
-        preparedStatement.setInt(1, ter.getCpf_terapeuta());        
+        preparedStatement.setInt(1, ter.getCpf());        
         preparedStatement.executeUpdate();        
         super.desconectar();
     }
@@ -71,8 +71,8 @@ public class DadosTerapeuta extends Conexao {
         String sql = "UPDATE terapeuta SET nome_terapeuta = ? WHERE cpf_terapeuta = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setInt(1, ter.getCpf_terapeuta());
-        preparedStatement.setString(2, ter.getNome_terapeuta());
+        preparedStatement.setInt(1, ter.getCpf());
+        preparedStatement.setString(2, ter.getNome());
         preparedStatement.setString(3, ter.getEspecialidade());
         preparedStatement.setDate(4, ter.getData_nasc()); 
         preparedStatement.setString(5, ter.getTelefone());
@@ -103,23 +103,23 @@ public class DadosTerapeuta extends Conexao {
         sql += " from terapeuta as terapeuta " ;
         sql += " where terapeuta.cpf_terapeuta > 0";
         
-        if (filtro.getCpf_terapeuta() > 0) {
+        if (filtro.getCpf() > 0) {
             sql += " and terapeuta.cpf_terapeuta = ? ";
         }
         
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
-        if (filtro.getCpf_terapeuta() > 0) {
-            preparedStatement.setInt(1, filtro.getCpf_terapeuta());
+        if (filtro.getCpf() > 0) {
+            preparedStatement.setInt(1, filtro.getCpf());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();
         //lendo os resultados
         while (leitor.next()) {
             Terapeuta terapeuta = new Terapeuta();
-            terapeuta.setCpf_terapeuta(leitor.getInt("cpf_terapeuta"));
-            terapeuta.setNome_terapeuta(leitor.getString("nome_terapeuta"));
+            terapeuta.setCpf(leitor.getInt("cpf_terapeuta"));
+            terapeuta.setNome(leitor.getString("nome_terapeuta"));
             terapeuta.setEspecialidade(leitor.getString("especialidade"));
             terapeuta.setData_nasc(leitor.getDate("data_nasc"));
             terapeuta.setTelefone(leitor.getString("telefone"));

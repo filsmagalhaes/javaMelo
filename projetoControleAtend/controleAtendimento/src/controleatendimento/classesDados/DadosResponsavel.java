@@ -30,8 +30,8 @@ public class DadosResponsavel extends Conexao{
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setInt(1, resp.getCpf_resp());
-        preparedStatement.setString(2, resp.getNome_resp());
+        preparedStatement.setInt(1, resp.getCpf());
+        preparedStatement.setString(2, resp.getNome());
         preparedStatement.setDate(3, resp.getData_nasc());
         preparedStatement.setString(4, resp.getTelefone());
         preparedStatement.setString(5, resp.getEmail());
@@ -58,7 +58,7 @@ public class DadosResponsavel extends Conexao{
         String sql = "DELETE FROM responsavel WHERE cpf_resp = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
         
-        preparedStatement.setInt(1, resp.getCpf_resp());        
+        preparedStatement.setInt(1, resp.getCpf());        
         
         preparedStatement.executeUpdate();        
         super.desconectar();
@@ -72,8 +72,8 @@ public class DadosResponsavel extends Conexao{
         String sql = "UPDATE responsavel SET nome_resp = ? WHERE cpf_resp = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setInt(1, resp.getCpf_resp());
-        preparedStatement.setString(2, resp.getNome_resp());
+        preparedStatement.setInt(1, resp.getCpf());
+        preparedStatement.setString(2, resp.getNome());
         preparedStatement.setDate(2, resp.getData_nasc());
         preparedStatement.setString(3, resp.getTelefone());
         preparedStatement.setString(4, resp.getEmail());
@@ -103,23 +103,23 @@ public class DadosResponsavel extends Conexao{
         sql += " from responsavel as resp " ;
         sql += " where resp.cpf_resp > 0";
         
-        if (filtro.getCpf_resp() > 0) {
+        if (filtro.getCpf() > 0) {
             sql += " and resp.cpf_resp = ? ";
         }
         
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
-        if (filtro.getCpf_resp() > 0) {
-            preparedStatement.setInt(1, filtro.getCpf_resp());
+        if (filtro.getCpf() > 0) {
+            preparedStatement.setInt(1, filtro.getCpf());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();
         //lendo os resultados
         while (leitor.next()) {
             Responsavel resp = new Responsavel();
-            resp.setCpf_resp(leitor.getInt("cpf_resp"));
-            resp.setNome_resp(leitor.getString("nome_resp"));
+            resp.setCpf(leitor.getInt("cpf_resp"));
+            resp.setNome(leitor.getString("nome_resp"));
             resp.setData_nasc(leitor.getDate("data_nasc"));
             resp.setTelefone(leitor.getString("telefone"));
             resp.setEmail(leitor.getString("email"));

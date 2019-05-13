@@ -14,12 +14,8 @@ import java.sql.Date;
 public abstract class Pessoa {
     
     
-private int cpf_resp;
-private String nome_resp;
-private int cpf_client;
-private String nome_client;    
-private int cpf_terapeuta;
-private String nome_terapeuta;
+private int cpf;
+private String nome;
 private Date data_nasc;
 private String telefone;
 private String email;
@@ -34,38 +30,22 @@ private int conta;
 
 
 
-    public int getCpf_resp() {
-        return cpf_resp;
+    public int getCpf() {
+        return cpf;
     }
 
-    public void setCpf_resp(int cpf_resp) {
-        this.cpf_resp = cpf_resp;
+    public void setCpf(int cpf) {
+        this.cpf = cpf;
     }
 
-    public String getNome_resp() {
-        return nome_resp;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNome_resp(String nome_resp) {
-        this.nome_resp = nome_resp;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
-    public int getCpf_terapeuta() {
-        return cpf_terapeuta;
-    }
-
-    public void setCpf_terapeuta(int cpf_terapeuta) {
-        this.cpf_terapeuta = cpf_terapeuta;
-    }
-
-    public String getNome_terapeuta() {
-        return nome_terapeuta;
-    }
-
-    public void setNome_terapeuta(String nome_terapeuta) {
-        this.nome_terapeuta = nome_terapeuta;
-    }
-
     public Date getData_nasc() {
         return data_nasc;
     }
@@ -153,20 +133,6 @@ private int conta;
     public void setConta(int conta) {
         this.conta = conta;
     }
-    public int getCpf_client() {
-        return cpf_client;
-    }
-
-    public void setCpf_client(int cpf_client) {
-        this.cpf_client = cpf_client;
-    }
-
-    public String getNome_client() {
-        return nome_client;
-    }
-
-    public void setNome_client(String nome_client) {
-        this.nome_client = nome_client;
-    }
+ 
        
 }
