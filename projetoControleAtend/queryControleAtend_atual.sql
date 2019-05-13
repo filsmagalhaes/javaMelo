@@ -120,5 +120,15 @@ r.telefone, r.email, r.endereco, r.cidade, r.bairro,
 r.complemento, r.cep, r.banco, r.agencia, r.conta,
 c.cpf_cli, c.idade, c.idade_corrigida, c.data_nasc, c.nome_cli, c.fk_cpf_resp
 FROM responsavel as r
-INNER JOIN cliente as c
-ON r.cpf_resp = c.cpf_cli;
+left JOIN cliente as c
+ON r.cpf_resp = c.cpf_cli
+union all
+SELECT r.cpf_resp, r.nome_resp, r.data_nasc, 
+r.telefone, r.email, r.endereco, r.cidade, r.bairro, 
+r.complemento, r.cep, r.banco, r.agencia, r.conta,
+c.cpf_cli, c.idade, c.idade_corrigida, c.data_nasc, c.nome_cli, c.fk_cpf_resp
+FROM responsavel as r
+right JOIN cliente as c
+ON r.cpf_resp = c.cpf_cli
+
+
