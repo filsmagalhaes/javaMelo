@@ -21,7 +21,7 @@ private Time hora_fim;
 private int quantidade_sessoes;
 private String descricao_diagnostico;
 private String descricao_sessao;
-private int valor_sessao;
+private double valor_sessao;
 
 private Cliente cliente;    
 private Terapeuta terapeuta;
@@ -30,10 +30,9 @@ private Terapeuta terapeuta;
  //qual_visibilidade  mesmo_nome_classe(){}
     public Atendimento() {
         this.cliente = new Cliente();
-        this.terapeuta = new Terapeuta();        
+        //this.terapeuta = new Terapeuta();        
     }
-    
-   
+       
     public String toString() {
         String retorno = "";
         retorno += "id_atendimento: " + this.id_atendimento;
@@ -107,11 +106,11 @@ private Terapeuta terapeuta;
         this.descricao_sessao = descricao_sessao;
     }
 
-    public int getValor_sessao() {
+    public double getValor_sessao() {
         return valor_sessao;
     }
 
-    public void setValor_sessao(int valor_sessao) {
+    public void setValor_sessao(double valor_sessao) {
         this.valor_sessao = valor_sessao;
     }
 
@@ -122,13 +121,14 @@ private Terapeuta terapeuta;
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+  /*  
 public Terapeuta getTerapeuta() {
         return terapeuta;
     }
 
     public void setTerapeuta(Terapeuta terapeuta) {
         this.terapeuta = terapeuta;
-    }
+    } 
+  */
    
 }
