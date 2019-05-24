@@ -42,9 +42,7 @@ private ArrayList<Terapeuta> listaTerapeutas;
 
     public void setResponsavel(Responsavel responsavel) {
         this.responsavel = responsavel;
-    }
-    
-
-    
+    } 
+  
     
 }

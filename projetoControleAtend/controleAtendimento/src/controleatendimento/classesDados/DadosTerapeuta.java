@@ -22,7 +22,7 @@ public class DadosTerapeuta extends Conexao {
      * Criando CRUD: Insert
      */
     
-    public void cadastrarResponsavel(Terapeuta ter) throws SQLException, Exception {
+    public void cadastrarTerapeuta(Terapeuta ter) throws SQLException, Exception {
         //instrucao a ser executada
         String sql = "INSERT INTO terapeuta (cpf_terapeuta, nome_terapeuta, especialidade, data_nasc, telefone, email, endereco, cidade, "
         + "bairro, complemento, cep, banco, agencia, conta)  ";
@@ -55,7 +55,7 @@ public class DadosTerapeuta extends Conexao {
      * Criando CRUD: Delete
      */
   
-  public void removerResponsavel (Terapeuta ter) throws SQLException, Exception {        
+  public void removerTerapeuta (Terapeuta ter) throws SQLException, Exception {        
         String sql = "DELETE FROM terapeuta WHERE cpf_terapeuta = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
         preparedStatement.setInt(1, ter.getCpf());        
@@ -67,7 +67,7 @@ public class DadosTerapeuta extends Conexao {
      * Criando CRUD: Update
      */
   
-      public void atualizarResponsavel(Terapeuta ter) throws SQLException, Exception {       
+      public void atualizarTerapeuta(Terapeuta ter) throws SQLException, Exception {       
         String sql = "UPDATE terapeuta SET nome_terapeuta = ? WHERE cpf_terapeuta = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
