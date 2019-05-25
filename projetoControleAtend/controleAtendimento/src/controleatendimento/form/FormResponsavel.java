@@ -303,6 +303,9 @@ public class FormResponsavel extends javax.swing.JFrame {
             }
 
             filtro.setNome(jTextFieldNome.getText());
+            filtro.setTelefone(jTextFieldFone.getText());
+            filtro.setEmail(jTextFieldMail.getText());
+            
             DadosResponsavel dados = new DadosResponsavel();
             ArrayList<Responsavel> lista = dados.listar(filtro);
             DefaultTableModel modelo = new DefaultTableModel();

@@ -5,7 +5,6 @@
  */
 package controleatendimento.classesBasicas;
 
-import controleatendimento.classesBasicas.Pessoa;
 import java.util.ArrayList;
 
 /**

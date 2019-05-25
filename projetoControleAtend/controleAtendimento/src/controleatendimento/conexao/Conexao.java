@@ -24,7 +24,7 @@ public class Conexao {
     private final String BANCO_DE_DADOS = "controleatendimento";
     private final String PORTA_BANCO = "3306";
     private final String USUARIO = "root";
-    private final String SENHA = "4321";
+    private final String SENHA = "";
 
     public Connection conectar() throws Exception {
         return this.conectarMySql();

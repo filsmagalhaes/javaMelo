@@ -19,6 +19,7 @@ private String idade;
 private Responsavel responsavel;
 
 private ArrayList<Terapeuta> listaTerapeutas;
+private ArrayList<Responsavel> listaResponsavel;
 
 
     public String getIdade_corrigida() {

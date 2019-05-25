@@ -5,11 +5,9 @@
  */
 package controleatendimento.form;
 
-import controleatendimento.classesBasicas.Terapeuta;
-
 /**
  *
- * @author aluno
+ * @author filip
  */
 public class Main extends javax.swing.JFrame {
 
@@ -33,95 +31,77 @@ public class Main extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        jMenuFecharPrograma = new javax.swing.JMenuItem();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuArquivo = new javax.swing.JMenu();
+        jMenuItemFechar = new javax.swing.JMenuItem();
+        jMenuCadastro = new javax.swing.JMenu();
+        jMenuItemCadastroAtendimento = new javax.swing.JMenuItem();
+        jMenuItemCadastroCliente = new javax.swing.JMenuItem();
+        jMenuItemCadastroTerapeuta = new javax.swing.JMenuItem();
+        jMenuItemCadastroResp = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuCadastroTerapeuta = new javax.swing.JMenuItem();
-        jMenuCadastroResponsavel = new javax.swing.JMenuItem();
-        jMenuCadastroCliente = new javax.swing.JMenuItem();
-        jMenuCadastroAtendimento = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItemRelatorioAtend = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
         jMenu2.setText("jMenu2");
 
         jMenuItem1.setText("jMenuItem1");
-        jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("jMenuItem2");
 
-        jMenuItem3.setText("jMenuItem3");
-
-        jMenuItem4.setText("jMenuItem4");
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-
-        jMenuItem10.setText("jMenuItem10");
-
-        jMenuItem11.setText("jMenuItem11");
+        jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu3.setText("Arquivo");
+        jMenuArquivo.setText("Arquivo");
 
-        jMenuFecharPrograma.setText("Fechar");
-        jMenu3.add(jMenuFecharPrograma);
+        jMenuItemFechar.setText("Fechar");
+        jMenuArquivo.add(jMenuItemFechar);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenuArquivo);
 
-        jMenu4.setText("Cadastro");
+        jMenuCadastro.setText("Cadastro");
 
-        jMenuCadastroTerapeuta.setText("Terapeuta");
-        jMenuCadastroTerapeuta.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCadastroAtendimento.setText("Atendimento");
+        jMenuCadastro.add(jMenuItemCadastroAtendimento);
+
+        jMenuItemCadastroCliente.setText("Cliente");
+        jMenuItemCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuCadastroTerapeutaActionPerformed(evt);
+                jMenuItemCadastroClienteActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuCadastroTerapeuta);
+        jMenuCadastro.add(jMenuItemCadastroCliente);
 
-        jMenuCadastroResponsavel.setText("Responsável");
-        jMenuCadastroResponsavel.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCadastroTerapeuta.setText("Terapeuta");
+        jMenuItemCadastroTerapeuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuCadastroResponsavelActionPerformed(evt);
+                jMenuItemCadastroTerapeutaActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuCadastroResponsavel);
+        jMenuCadastro.add(jMenuItemCadastroTerapeuta);
 
-        jMenuCadastroCliente.setText("Cliente");
-        jMenu4.add(jMenuCadastroCliente);
+        jMenuItemCadastroResp.setText("Responsável");
+        jMenuItemCadastroResp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadastroRespActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItemCadastroResp);
 
-        jMenuCadastroAtendimento.setText("Atendimento");
-        jMenu4.add(jMenuCadastroAtendimento);
+        jMenuBar1.add(jMenuCadastro);
 
+        jMenu4.setText("Editar");
         jMenuBar1.add(jMenu4);
 
-        jMenu6.setText("Editar");
+        jMenu5.setText("Relatórios");
 
-        jMenuItem13.setText("Atualizar");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem13);
+        jMenuItemRelatorioAtend.setText("Atendimentos");
+        jMenu5.add(jMenuItemRelatorioAtend);
 
-        jMenuItem12.setText("Excluir");
-        jMenu6.add(jMenuItem12);
-
-        jMenuBar1.add(jMenu6);
-
-        jMenu5.setText("Atendimento");
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -134,27 +114,29 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuCadastroTerapeutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroTerapeutaActionPerformed
+    private void jMenuItemCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroClienteActionPerformed
         // TODO add your handling code here:
+        
+        new FormCliente().setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadastroClienteActionPerformed
+
+    private void jMenuItemCadastroTerapeutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroTerapeutaActionPerformed
+        // TODO add your handling code here:
+        
         new FormTerapeuta().setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadastroTerapeutaActionPerformed
 
-    }//GEN-LAST:event_jMenuCadastroTerapeutaActionPerformed
-
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void jMenuItemCadastroRespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroRespActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
-
-    private void jMenuCadastroResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastroResponsavelActionPerformed
-        // TODO add your handling code here:
+        
         new FormResponsavel().setVisible(true);
-       
-    }//GEN-LAST:event_jMenuCadastroResponsavelActionPerformed
+    }//GEN-LAST:event_jMenuItemCadastroRespActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,26 +174,21 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenuArquivo;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuCadastroAtendimento;
-    private javax.swing.JMenuItem jMenuCadastroCliente;
-    private javax.swing.JMenuItem jMenuCadastroResponsavel;
-    private javax.swing.JMenuItem jMenuCadastroTerapeuta;
-    private javax.swing.JMenuItem jMenuFecharPrograma;
+    private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemCadastroAtendimento;
+    private javax.swing.JMenuItem jMenuItemCadastroCliente;
+    private javax.swing.JMenuItem jMenuItemCadastroResp;
+    private javax.swing.JMenuItem jMenuItemCadastroTerapeuta;
+    private javax.swing.JMenuItem jMenuItemFechar;
+    private javax.swing.JMenuItem jMenuItemRelatorioAtend;
     // End of variables declaration//GEN-END:variables
 }

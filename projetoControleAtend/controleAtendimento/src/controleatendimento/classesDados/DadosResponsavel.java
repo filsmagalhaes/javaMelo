@@ -92,6 +92,9 @@ public class DadosResponsavel extends Conexao{
   
        /**
      * Criando SELECT
+     * @param filtro
+     * @return 
+     * @throws java.lang.Exception
      */
       
  public ArrayList<Responsavel> listar(Responsavel filtro) throws Exception {
