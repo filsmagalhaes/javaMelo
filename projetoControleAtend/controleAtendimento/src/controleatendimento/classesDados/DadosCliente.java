@@ -33,7 +33,7 @@ public class DadosCliente extends Conexao{
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setInt(1, client.getCpf());
+        preparedStatement.setLong(1, client.getCpf());
         preparedStatement.setString(2, client.getIdade());
         preparedStatement.setString(3, client.getIdade_corrigida());
         preparedStatement.setDate(4, client.getData_nasc());
@@ -53,7 +53,7 @@ public class DadosCliente extends Conexao{
         String sql = "DELETE FROM cliente WHERE cpf_cli = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
         
-        preparedStatement.setInt(1, client.getCpf());        
+        preparedStatement.setLong(1, client.getCpf());        
         
         preparedStatement.executeUpdate();        
         super.desconectar();
@@ -67,7 +67,7 @@ public class DadosCliente extends Conexao{
         String sql = "UPDATE cliente SET nome_cli = ? WHERE cpf_cli = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setInt(1, client.getCpf());
+        preparedStatement.setLong(1, client.getCpf());
         preparedStatement.setString(2, client.getIdade());
         preparedStatement.setString(3, client.getIdade_corrigida());
         preparedStatement.setDate(4, client.getData_nasc());
@@ -98,7 +98,7 @@ public class DadosCliente extends Conexao{
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
         if (filtro.getCpf() > 0) {
-            preparedStatement.setInt(1, filtro.getCpf());
+            preparedStatement.setLong(1, filtro.getCpf());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();

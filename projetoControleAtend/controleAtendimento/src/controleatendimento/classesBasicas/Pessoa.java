@@ -14,7 +14,7 @@ import java.sql.Date;
 public abstract class Pessoa {
     
     
-private int cpf;
+private long cpf;
 private String nome;
 private Date data_nasc;
 private String telefone;
@@ -30,7 +30,7 @@ private int conta;
 
 
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 

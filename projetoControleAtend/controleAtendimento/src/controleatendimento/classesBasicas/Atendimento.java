@@ -16,8 +16,8 @@ public class Atendimento {
     
 private int id_atendimento;
 private Date data_atendimento;
-private Time hora_inicio;
-private Time hora_fim;
+private String hora_inicio;
+private String hora_fim;
 private int quantidade_sessoes;
 private String descricao_diagnostico;
 private String descricao_sessao;
@@ -30,7 +30,7 @@ private Terapeuta terapeuta;
  //qual_visibilidade  mesmo_nome_classe(){}
     public Atendimento() {
         this.cliente = new Cliente();
-        //this.terapeuta = new Terapeuta();        
+        this.terapeuta = new Terapeuta();        
     }
        
     public String toString() {
@@ -66,19 +66,19 @@ private Terapeuta terapeuta;
         this.data_atendimento = data_atendimento;
     }
 
-    public Time getHora_inicio() {
+    public String getHora_inicio() {
         return hora_inicio;
     }
 
-    public void setHora_inicio(Time hora_inicio) {
+    public void setHora_inicio(String hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
 
-    public Time getHora_fim() {
+    public String getHora_fim() {
         return hora_fim;
     }
 
-    public void setHora_fim(Time hora_fim) {
+    public void setHora_fim(String hora_fim) {
         this.hora_fim = hora_fim;
     }
 
@@ -121,14 +121,13 @@ private Terapeuta terapeuta;
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-  /*  
-public Terapeuta getTerapeuta() {
+    
+    public Terapeuta getTerapeuta() {
         return terapeuta;
     }
 
     public void setTerapeuta(Terapeuta terapeuta) {
         this.terapeuta = terapeuta;
-    } 
-  */
+    }
    
 }

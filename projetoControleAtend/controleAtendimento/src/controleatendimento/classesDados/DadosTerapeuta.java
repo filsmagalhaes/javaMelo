@@ -30,7 +30,7 @@ public class DadosTerapeuta extends Conexao {
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setInt(1, ter.getCpf());
+        preparedStatement.setLong(1, ter.getCpf());
         preparedStatement.setString(2, ter.getNome());
         preparedStatement.setString(3, ter.getEspecialidade());
         preparedStatement.setDate(4, ter.getData_nasc()); 
@@ -58,7 +58,7 @@ public class DadosTerapeuta extends Conexao {
   public void removerTerapeuta (Terapeuta ter) throws SQLException, Exception {        
         String sql = "DELETE FROM terapeuta WHERE cpf_terapeuta = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
-        preparedStatement.setInt(1, ter.getCpf());        
+        preparedStatement.setLong(1, ter.getCpf());        
         preparedStatement.executeUpdate();        
         super.desconectar();
     }
@@ -71,7 +71,7 @@ public class DadosTerapeuta extends Conexao {
         String sql = "UPDATE terapeuta SET nome_terapeuta = ? WHERE cpf_terapeuta = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setInt(1, ter.getCpf());
+        preparedStatement.setLong(1, ter.getCpf());
         preparedStatement.setString(2, ter.getNome());
         preparedStatement.setString(3, ter.getEspecialidade());
         preparedStatement.setDate(4, ter.getData_nasc()); 
@@ -111,7 +111,7 @@ public class DadosTerapeuta extends Conexao {
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
         if (filtro.getCpf() > 0) {
-            preparedStatement.setInt(1, filtro.getCpf());
+            preparedStatement.setLong(1, filtro.getCpf());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();

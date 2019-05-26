@@ -30,7 +30,7 @@ public class DadosResponsavel extends Conexao{
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setInt(1, resp.getCpf());
+        preparedStatement.setLong(1, resp.getCpf());
         preparedStatement.setString(2, resp.getNome());
         preparedStatement.setDate(3, resp.getData_nasc());
         preparedStatement.setString(4, resp.getTelefone());
@@ -58,7 +58,7 @@ public class DadosResponsavel extends Conexao{
         String sql = "DELETE FROM responsavel WHERE cpf_resp = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
         
-        preparedStatement.setInt(1, resp.getCpf());        
+        preparedStatement.setLong(1, resp.getCpf());        
         
         preparedStatement.executeUpdate();        
         super.desconectar();
@@ -72,7 +72,7 @@ public class DadosResponsavel extends Conexao{
         String sql = "UPDATE responsavel SET nome_resp = ? WHERE cpf_resp = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setInt(1, resp.getCpf());
+        preparedStatement.setLong(1, resp.getCpf());
         preparedStatement.setString(2, resp.getNome());
         preparedStatement.setDate(2, resp.getData_nasc());
         preparedStatement.setString(3, resp.getTelefone());
@@ -114,7 +114,7 @@ public class DadosResponsavel extends Conexao{
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
         if (filtro.getCpf() > 0) {
-            preparedStatement.setInt(1, filtro.getCpf());
+            preparedStatement.setLong(1, filtro.getCpf());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();
