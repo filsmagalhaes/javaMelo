@@ -21,8 +21,8 @@ public class DadosAtendimento extends Conexao {
    public void cadastrarAtendimento(Atendimento atend) throws SQLException, Exception {
         //instrucao a ser executada
         String sql = "insert into atendimento (data_atendimento, hora_inicio, hora_fim, " +
-"quantidade_sessoes, descricao_diagnostico, descricao_sessao, valor_sessao, fk_cpf_terapeuta, fk_cpf_cliente) ";
-        sql += " VALUES (?,?,?,?,?,?,?)";
+"quantidade_sessoes, descricao_diagnostico, descricao_sessao, valor_sessao, IdTer, IdCli) ";
+        sql += " VALUES (?,?,?,?,?,?,?,?,?)";
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
@@ -33,8 +33,8 @@ public class DadosAtendimento extends Conexao {
         preparedStatement.setString(5, atend.getDescricao_diagnostico());
         preparedStatement.setString(6, atend.getDescricao_sessao());
         preparedStatement.setDouble(7, atend.getValor_sessao());
-        preparedStatement.setLong(8, atend.getTerapeuta().getCpf());
-        preparedStatement.setLong(9, atend.getCliente().getCpf());
+        preparedStatement.setInt(8, atend.getTerapeuta().getId());
+        preparedStatement.setInt(9, atend.getCliente().getId());
         
         // execute insert SQL stetement
         preparedStatement.executeUpdate();
@@ -44,7 +44,7 @@ public class DadosAtendimento extends Conexao {
 
     public void removerAtendimento(Atendimento atend) throws SQLException, Exception {
         //instrucao a ser executada
-        String sql = "DELETE FROM atendimento WHERE id = ? ";
+        String sql = "DELETE FROM atendimento WHERE id_atendimento = ? ";
 
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
@@ -60,7 +60,7 @@ public class DadosAtendimento extends Conexao {
         //instrucao a ser executada
         String sql = "UPDATE atendimento SET data_atendimento = ?, hora_inicio = ?, hora_fim = ?,"
                 + "quantidade_sessoes = ?, descricao_diagnostico = ?, descricao_sessao = ?,"
-                + "valor_sessao = ?, fk_cpf_terapeuta = ?, fk_cpf_cliente = ? WHERE id = ? ";
+                + "valor_sessao = ?, IdTer = ?, IdCli = ? WHERE id_atendimento = ? ";
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
         preparedStatement.setDate(1, atend.getData_atendimento());
@@ -70,8 +70,8 @@ public class DadosAtendimento extends Conexao {
         preparedStatement.setString(5, atend.getDescricao_diagnostico());
         preparedStatement.setString(6, atend.getDescricao_sessao());
         preparedStatement.setDouble(7, atend.getValor_sessao());
-        preparedStatement.setLong(8, atend.getTerapeuta().getCpf());
-        preparedStatement.setLong(9, atend.getCliente().getCpf());
+        preparedStatement.setInt(8, atend.getTerapeuta().getId());
+        preparedStatement.setInt(9, atend.getCliente().getId());
         // execute insert SQL stetement
         preparedStatement.executeUpdate();
         //fechando a conexão com o banco de dados
@@ -90,10 +90,9 @@ public class DadosAtendimento extends Conexao {
         + "t.nome_terapeuta ";
         sql += " from atendimento as a ";
         sql += " inner join cliente as c ";
-        sql += " on a.fk_cpf_terapeuta = c.cpf_cli ";
-        sql += " on a.fk_cpf_cliente = c.cpf_cli ";
-        sql += " inner join terapeuta as t ";
-        sql += " on atend.fk_cpf_terapeuta = cpf_terapeuta ";
+        sql += " on a.IdCli = c.cpf_cli ";
+        sql += " inner join terapeuta as t "; 
+        sql += " on atend.IdTer = IdTer ";
         sql += " where a.id_atendimento > 0 ";
         
         //preparando a instrução
@@ -112,7 +111,7 @@ public class DadosAtendimento extends Conexao {
             atend.setDescricao_sessao(leitor.getString("descricao_sessao"));
             atend.setValor_sessao(leitor.getDouble("valor_sessao"));
             
-            atend.getCliente().setCpf(leitor.getInt("cpf_cli")); 
+            atend.getCliente().setCpf(leitor.getString("cpf_cli")); 
             atend.getCliente().setIdade(leitor.getString("idade"));
             atend.getCliente().setIdade_corrigida(leitor.getString("idade_corrigida"));
             atend.getCliente().setData_nasc(leitor.getDate("data_nasc"));

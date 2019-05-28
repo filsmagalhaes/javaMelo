@@ -10,6 +10,8 @@ import controleatendimento.classesBasicas.Responsavel;
 import controleatendimento.classesDados.DadosCliente;
 import controleatendimento.classesDados.DadosResponsavel;
 import controleatendimento.negocio.NegocioCliente;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -173,11 +175,11 @@ public class FormCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -213,14 +215,16 @@ public class FormCliente extends javax.swing.JFrame {
         // TODO add your handling code here:  
         
         try {
+        String dataString = jTextFieldDataNasc.getText();
+        DateFormat fmt = new SimpleDateFormat("dd/MM/yyy");
+        java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
+               
+        
             Cliente c = new Cliente();
-            if (jTextFieldCpf.getText().matches("[0-9]+") == false) {
-                JOptionPane.showMessageDialog(this, "Informe apenas números para o CPF");
-                return;           
-            }
+           
             c.setNome(jTextFieldNome.getText());
-            c.setCpf(Integer.parseInt(jTextFieldCpf.getText()));           
-            //c.setDataNascimento(jTextFieldDataNasc.getDate());
+            c.setCpf(jTextFieldCpf.getText());           
+            c.setData_nasc(data);
             c.setIdade(jTextFieldIdade.getText());   
             c.setIdade_corrigida(jTextFieldIdadeCorr.getText());         
             
@@ -254,12 +258,10 @@ public class FormCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Cliente filtro = new Cliente();
-            if (jTextFieldCpf.getText().matches("[0-9]+") == true) {
-                filtro.setCpf(Integer.parseInt(jTextFieldCpf.getText()));
-            }
-
+            
             filtro.setNome(jTextFieldNome.getText());
             filtro.setNome(jComboBoxResponsavel.getSelectedItem().toString());
+                       
             
             DadosCliente dados = new DadosCliente();
             ArrayList<Cliente> lista = dados.listar(filtro);

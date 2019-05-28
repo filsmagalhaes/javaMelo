@@ -26,11 +26,11 @@ public class DadosResponsavel extends Conexao{
         //instrucao a ser executada
         String sql = "INSERT INTO responsavel (cpf_resp, nome_resp, data_nasc, telefone, email, endereco, cidade, "
         + "bairro, complemento, cep, banco, agencia, conta)  ";
-        sql += " VALUES (?,?)";
+        sql += " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setLong(1, resp.getCpf());
+        preparedStatement.setString(1, resp.getCpf());
         preparedStatement.setString(2, resp.getNome());
         preparedStatement.setDate(3, resp.getData_nasc());
         preparedStatement.setString(4, resp.getTelefone());
@@ -55,10 +55,10 @@ public class DadosResponsavel extends Conexao{
      */
   
   public void removerResponsavel (Responsavel resp) throws SQLException, Exception {        
-        String sql = "DELETE FROM responsavel WHERE cpf_resp = ? ";        
+        String sql = "DELETE FROM responsavel WHERE IdResp = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
         
-        preparedStatement.setLong(1, resp.getCpf());        
+        preparedStatement.setInt(1, resp.getId());        
         
         preparedStatement.executeUpdate();        
         super.desconectar();
@@ -69,22 +69,22 @@ public class DadosResponsavel extends Conexao{
      */
   
       public void atualizarResponsavel(Responsavel resp) throws SQLException, Exception {       
-        String sql = "UPDATE responsavel SET nome_resp = ? WHERE cpf_resp = ? ";        
+        String sql = "UPDATE responsavel SET nome_resp = ? WHERE IdResp = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setLong(1, resp.getCpf());
+        preparedStatement.setString(1, resp.getCpf());
         preparedStatement.setString(2, resp.getNome());
-        preparedStatement.setDate(2, resp.getData_nasc());
-        preparedStatement.setString(3, resp.getTelefone());
-        preparedStatement.setString(4, resp.getEmail());
-        preparedStatement.setString(5, resp.getEndereco());
-        preparedStatement.setString(6, resp.getCidade());
-        preparedStatement.setString(7, resp.getBairro());
-        preparedStatement.setString(8, resp.getComplemento());
-        preparedStatement.setInt(9, resp.getCep());
-        preparedStatement.setString(10, resp.getBanco());
-        preparedStatement.setInt(11, resp.getAgencia());
-        preparedStatement.setInt(12, resp.getConta());
+        preparedStatement.setDate(3, resp.getData_nasc());
+        preparedStatement.setString(4, resp.getTelefone());
+        preparedStatement.setString(5, resp.getEmail());
+        preparedStatement.setString(6, resp.getEndereco());
+        preparedStatement.setString(7, resp.getCidade());
+        preparedStatement.setString(8, resp.getBairro());
+        preparedStatement.setString(9, resp.getComplemento());
+        preparedStatement.setInt(10, resp.getCep());
+        preparedStatement.setString(11, resp.getBanco());
+        preparedStatement.setInt(12, resp.getAgencia());
+        preparedStatement.setInt(13, resp.getConta());
         
         preparedStatement.executeUpdate();        
         super.desconectar();
@@ -101,27 +101,29 @@ public class DadosResponsavel extends Conexao{
         ArrayList<Responsavel> retorno = new ArrayList<>();
 
         //instrução sql correspondente a inserção do aluno
-        String sql = " select cpf_resp, nome_resp, data_nasc, telefone, email, endereco, cidade, "
+        String sql = " select IdResp, cpf_resp, nome_resp, data_nasc, telefone, email, endereco, cidade, "
         + "bairro, complemento, cep, banco, agencia, conta ";
         sql += " from responsavel as resp " ;
-        sql += " where resp.cpf_resp > 0";
+        sql += " where resp.IdResp > 0";
         
-        if (filtro.getCpf() > 0) {
-            sql += " and resp.cpf_resp = ? ";
+        if (filtro.getId() > 0) {
+            sql += " and resp.IdResp = ? ";
         }
         
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
-        if (filtro.getCpf() > 0) {
-            preparedStatement.setLong(1, filtro.getCpf());
+        if (filtro.getId() > 0) {
+            preparedStatement.setInt(1, filtro.getId());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();
         //lendo os resultados
         while (leitor.next()) {
             Responsavel resp = new Responsavel();
-            resp.setCpf(leitor.getInt("cpf_resp"));
+            
+            resp.setId(leitor.getInt("IdResp"));
+            resp.setCpf(leitor.getString("cpf_resp"));
             resp.setNome(leitor.getString("nome_resp"));
             resp.setData_nasc(leitor.getDate("data_nasc"));
             resp.setTelefone(leitor.getString("telefone"));

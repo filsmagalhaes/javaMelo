@@ -11,10 +11,10 @@ import java.sql.Date;
  *
  * @author aluno
  */
-public abstract class Pessoa {
+public abstract class Pessoa {     
     
-    
-private long cpf;
+private int Id;
+private String cpf;
 private String nome;
 private Date data_nasc;
 private String telefone;
@@ -29,12 +29,19 @@ private int agencia;
 private int conta;
 
 
+    public int getId() {
+        return Id;
+    }
 
-    public long getCpf() {
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

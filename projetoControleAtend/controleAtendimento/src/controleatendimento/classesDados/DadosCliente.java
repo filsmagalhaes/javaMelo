@@ -28,16 +28,18 @@ public class DadosCliente extends Conexao{
   public void cadastrarCliente(Cliente client) throws SQLException, Exception {
         //instrucao a ser executada
         String sql = "INSERT INTO cliente (cpf_cli, idade, idade_corrigida, "
-        + "data_nasc, nome_cli)  ";
-        sql += " VALUES (?,?)";
+        + "data_nasc, nome_cli, IdResp)  ";
+        sql += " VALUES (?,?,?,?,?,?)";
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setLong(1, client.getCpf());
+        preparedStatement.setString(1, client.getCpf());
         preparedStatement.setString(2, client.getIdade());
         preparedStatement.setString(3, client.getIdade_corrigida());
         preparedStatement.setDate(4, client.getData_nasc());
         preparedStatement.setString(5, client.getNome());
+        preparedStatement.setInt(6, client.getResponsavel().getId());
+        
                 
         // execute insert SQL stetement
         preparedStatement.executeUpdate();
@@ -50,10 +52,10 @@ public class DadosCliente extends Conexao{
      */
   
   public void removerCliente (Cliente client) throws SQLException, Exception {        
-        String sql = "DELETE FROM cliente WHERE cpf_cli = ? ";        
+        String sql = "DELETE FROM cliente WHERE IdCli = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
         
-        preparedStatement.setLong(1, client.getCpf());        
+        preparedStatement.setInt(1, client.getId());        
         
         preparedStatement.executeUpdate();        
         super.desconectar();
@@ -64,10 +66,10 @@ public class DadosCliente extends Conexao{
      */
   
       public void atualizarCliente(Cliente client) throws SQLException, Exception {       
-        String sql = "UPDATE cliente SET nome_cli = ? WHERE cpf_cli = ? ";        
+        String sql = "UPDATE cliente SET nome_cli = ? WHERE IdCli = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setLong(1, client.getCpf());
+        preparedStatement.setString(1, client.getCpf());
         preparedStatement.setString(2, client.getIdade());
         preparedStatement.setString(3, client.getIdade_corrigida());
         preparedStatement.setDate(4, client.getData_nasc());
@@ -85,27 +87,28 @@ public class DadosCliente extends Conexao{
         ArrayList<Cliente> retorno = new ArrayList<>();
 
         //instrução sql correspondente a inserção do aluno
-        String sql = " select cpf_cli, idade, idade_corrigida, "
+        String sql = " select idCli, cpf_cli, idade, idade_corrigida, "
                 + "data_nasc, nome, fk_cpf_resp";
-        sql += " from client as cliente " ;
-        sql += " where client.cpf > 0";
+        sql += " from cliente as cliente " ;
+        sql += " where idCli > 0";
         
-        if (filtro.getCpf() > 0) {
-            sql += " and cliente.cpf_cli = ? ";
+        if (filtro.getId() > 0) {
+            sql += " and cliente.idCli = ? ";
         }
         
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
-        if (filtro.getCpf() > 0) {
-            preparedStatement.setLong(1, filtro.getCpf());
+        if (filtro.getId() > 0) {
+            preparedStatement.setInt(1, filtro.getId());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();
         //lendo os resultados
         while (leitor.next()) {
             Cliente client = new Cliente();
-            client.setCpf(leitor.getInt("cpf_cli"));
+            client.setId(leitor.getInt("idCli"));
+            client.setCpf(leitor.getString("cpf_cli"));
             client.setIdade(leitor.getString("idade"));
             client.setIdade_corrigida(leitor.getString("idade_corrigida"));
             client.setData_nasc(leitor.getDate("data_nasc"));

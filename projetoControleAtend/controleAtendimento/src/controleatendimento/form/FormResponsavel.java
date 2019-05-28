@@ -275,7 +275,7 @@ public class FormResponsavel extends javax.swing.JFrame {
                 return;
             }            
             r.setNome(jTextFieldNome.getText());
-            r.setCpf(Integer.parseInt(jTextFieldCpf.getText()));
+            r.setCpf(jTextFieldCpf.getText());
             r.setEndereco(jTextFieldEndereco.getText());
             r.setComplemento(jTextFieldComplemento.getText());
             r.setCidade(jTextFieldCidade.getText());
@@ -299,7 +299,7 @@ public class FormResponsavel extends javax.swing.JFrame {
         try {
             Responsavel filtro = new Responsavel();
             if (jTextFieldCpf.getText().matches("[0-9]+") == true) {
-                filtro.setCpf(Integer.parseInt(jTextFieldCpf.getText()));
+                filtro.setCpf(jTextFieldCpf.getText());
             }
 
             filtro.setNome(jTextFieldNome.getText());

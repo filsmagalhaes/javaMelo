@@ -228,7 +228,7 @@ public class FormTerapeuta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Informe apenas números para a conta");
                 return;
             }
-            t.setCpf(Integer.parseInt(jTextFieldCpf.getText()));
+            t.setCpf(jTextFieldCpf.getText());
             t.setNome(jTextFieldNome.getText());
             t.setEspecialidade(jTextFieldEspecialidade.getText());
             t.setTelefone(jTextFieldFone.getText());
@@ -250,7 +250,7 @@ public class FormTerapeuta extends javax.swing.JFrame {
         try {
             Terapeuta filtro = new Terapeuta();
             if (jTextFieldCpf.getText().matches("[0-9]+") == true) {
-                filtro.setCpf(Integer.parseInt(jTextFieldCpf.getText()));
+                filtro.setCpf(jTextFieldCpf.getText());
             }
 
             filtro.setNome(jTextFieldNome.getText());

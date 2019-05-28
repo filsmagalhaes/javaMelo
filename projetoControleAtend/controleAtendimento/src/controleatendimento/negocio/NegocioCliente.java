@@ -17,7 +17,7 @@ public class NegocioCliente {
         if (c == null) {
             throw new Exception("Informar os dados da Terapeuta");
         }
-        if (c.getCpf() <= 0) {
+        if (c.getCpf() == null) {
             throw new Exception("Informar a matricula da Terapeuta");
         }
         if (c.getNome() == null) {

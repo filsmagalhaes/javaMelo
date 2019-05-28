@@ -30,7 +30,7 @@ public class DadosTerapeuta extends Conexao {
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
-        preparedStatement.setLong(1, ter.getCpf());
+        preparedStatement.setString(1, ter.getCpf());
         preparedStatement.setString(2, ter.getNome());
         preparedStatement.setString(3, ter.getEspecialidade());
         preparedStatement.setDate(4, ter.getData_nasc()); 
@@ -56,9 +56,9 @@ public class DadosTerapeuta extends Conexao {
      */
   
   public void removerTerapeuta (Terapeuta ter) throws SQLException, Exception {        
-        String sql = "DELETE FROM terapeuta WHERE cpf_terapeuta = ? ";        
+        String sql = "DELETE FROM terapeuta WHERE IdTer = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);        
-        preparedStatement.setLong(1, ter.getCpf());        
+        preparedStatement.setInt(1, ter.getId());        
         preparedStatement.executeUpdate();        
         super.desconectar();
     }
@@ -68,10 +68,10 @@ public class DadosTerapeuta extends Conexao {
      */
   
       public void atualizarTerapeuta(Terapeuta ter) throws SQLException, Exception {       
-        String sql = "UPDATE terapeuta SET nome_terapeuta = ? WHERE cpf_terapeuta = ? ";        
+        String sql = "UPDATE terapeuta SET nome_terapeuta = ? WHERE IdTer = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setLong(1, ter.getCpf());
+        preparedStatement.setString(1, ter.getCpf());
         preparedStatement.setString(2, ter.getNome());
         preparedStatement.setString(3, ter.getEspecialidade());
         preparedStatement.setDate(4, ter.getData_nasc()); 
@@ -98,27 +98,27 @@ public class DadosTerapeuta extends Conexao {
         ArrayList<Terapeuta> retorno = new ArrayList<>();
 
         //instrução sql correspondente a inserção do aluno
-        String sql = " select cpf_terapeuta, nome_terapeuta, data_nasc, telefone, email, endereco, cidade, "
+        String sql = " select IdTer, cpf_terapeuta, nome_terapeuta, especialidade, data_nasc, telefone, email, endereco, cidade, "
         + "bairro, complemento, cep, banco, agencia, conta ";
         sql += " from terapeuta as terapeuta " ;
-        sql += " where terapeuta.cpf_terapeuta > 0";
+        sql += " where terapeuta.IdTer > 0";
         
-        if (filtro.getCpf() > 0) {
-            sql += " and terapeuta.cpf_terapeuta = ? ";
+        if (filtro.getId() > 0) {
+            sql += " and terapeuta.IdTer = ? ";
         }
         
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
-        if (filtro.getCpf() > 0) {
-            preparedStatement.setLong(1, filtro.getCpf());
+        if (filtro.getId() > 0) {
+            preparedStatement.setInt(1, filtro.getId());
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();
         //lendo os resultados
         while (leitor.next()) {
             Terapeuta terapeuta = new Terapeuta();
-            terapeuta.setCpf(leitor.getInt("cpf_terapeuta"));
+            terapeuta.setCpf(leitor.getString("cpf_terapeuta"));
             terapeuta.setNome(leitor.getString("nome_terapeuta"));
             terapeuta.setEspecialidade(leitor.getString("especialidade"));
             terapeuta.setData_nasc(leitor.getDate("data_nasc"));

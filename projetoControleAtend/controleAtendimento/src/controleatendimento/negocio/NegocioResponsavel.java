@@ -17,7 +17,7 @@ public class NegocioResponsavel {
         if (r == null) {
             throw new Exception("Informar os dados do aluno");
         }
-        if (r.getCpf() <= 0) {
+        if (r.getCpf() == null) {
             throw new Exception("Informar a matricula do aluno");
         }
         if (r.getNome() == null) {
