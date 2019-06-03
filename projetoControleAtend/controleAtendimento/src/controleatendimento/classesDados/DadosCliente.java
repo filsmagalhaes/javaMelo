@@ -23,12 +23,14 @@ public class DadosCliente extends Conexao{
       
     /**
      * Criando CRUD: Insert
+     * @param client
+     * @throws java.sql.SQLException
      */
     
   public void cadastrarCliente(Cliente client) throws SQLException, Exception {
         //instrucao a ser executada
         String sql = "INSERT INTO cliente (cpf_cli, idade, idade_corrigida, "
-        + "data_nasc, nome_cli, IdResp)  ";
+        + "data_nasc, nome_cli, idResp)  ";
         sql += " VALUES (?,?,?,?,?,?)";
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
@@ -49,6 +51,8 @@ public class DadosCliente extends Conexao{
   
   /**
      * Criando CRUD: Delete
+     * @param client
+     * @throws java.sql.SQLException
      */
   
   public void removerCliente (Cliente client) throws SQLException, Exception {        
@@ -63,6 +67,8 @@ public class DadosCliente extends Conexao{
   
    /**
      * Criando CRUD: Update
+     * @param client
+     * @throws java.sql.SQLException
      */
   
       public void atualizarCliente(Cliente client) throws SQLException, Exception {       
@@ -81,15 +87,20 @@ public class DadosCliente extends Conexao{
   
        /**
      * Criando SELECT
+     * @param filtro
+     * @return 
+     * @throws java.lang.Exception
      */
       
  public ArrayList<Cliente> listar(Cliente filtro) throws Exception {
         ArrayList<Cliente> retorno = new ArrayList<>();
 
-        //instrução sql correspondente a inserção do aluno
-        String sql = " select idCli, cpf_cli, idade, idade_corrigida, "
-                + "data_nasc, nome, fk_cpf_resp";
-        sql += " from cliente as cliente " ;
+        //instrução sql correspondente a inserção do cliente
+        String sql = " select c.idCli, c.cpf_cli, c.idade, c.idade_corrigida, "
+                + "c.data_nasc, c.nome_cli, c.idResp, r.idResp, r.nome_resp ";
+        sql += " from cliente as c " ;
+        sql += " inner join responsavel as r ";
+        sql += " on c.idResp = r.idResp ";
         sql += " where idCli > 0";
         
         if (filtro.getId() > 0) {
@@ -100,7 +111,9 @@ public class DadosCliente extends Conexao{
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
         if (filtro.getId() > 0) {
-            preparedStatement.setInt(1, filtro.getId());
+        preparedStatement.setInt(1, filtro.getId());
+       
+            
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();
@@ -113,6 +126,8 @@ public class DadosCliente extends Conexao{
             client.setIdade_corrigida(leitor.getString("idade_corrigida"));
             client.setData_nasc(leitor.getDate("data_nasc"));
             client.setNome(leitor.getString("nome_cli"));
+            client.getResponsavel().setId(leitor.getInt("idResp"));
+            client.getResponsavel().setNome(leitor.getString("nome_resp"));
             retorno.add(client);
         }      
                     

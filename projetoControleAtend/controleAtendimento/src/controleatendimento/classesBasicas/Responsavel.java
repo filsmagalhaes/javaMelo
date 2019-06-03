@@ -12,6 +12,14 @@ import java.util.ArrayList;
  * @author aluno
  */
 public class Responsavel extends Pessoa { 
+
+    public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
  
 private ArrayList<Cliente> listaClientes;
     

@@ -77,6 +77,11 @@ public class FormMain extends javax.swing.JFrame {
         jMenuCadastro.setText("Cadastro");
 
         jMenuItemCadastroAtendimento.setText("Atendimento");
+        jMenuItemCadastroAtendimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadastroAtendimentoActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jMenuItemCadastroAtendimento);
 
         jMenuItemCadastroCliente.setText("Cliente");
@@ -111,6 +116,11 @@ public class FormMain extends javax.swing.JFrame {
         jMenu5.setText("Relatórios");
 
         jMenuItemRelatorioAtend.setText("Atendimentos");
+        jMenuItemRelatorioAtend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRelatorioAtendActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItemRelatorioAtend);
 
         jMenuBar1.add(jMenu5);
@@ -173,6 +183,16 @@ public class FormMain extends javax.swing.JFrame {
             }
        
     }//GEN-LAST:event_jButtonTestarConexaoActionPerformed
+
+    private void jMenuItemCadastroAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastroAtendimentoActionPerformed
+        // TODO add your handling code here:
+        
+        new FormAtend().setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadastroAtendimentoActionPerformed
+
+    private void jMenuItemRelatorioAtendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRelatorioAtendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemRelatorioAtendActionPerformed
 
     /**
      * @param args the command line arguments

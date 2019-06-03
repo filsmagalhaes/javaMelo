@@ -5,7 +5,6 @@
  */
 package controleatendimento.classesBasicas;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +20,9 @@ private Responsavel responsavel;
 private ArrayList<Terapeuta> listaTerapeutas;
 private ArrayList<Responsavel> listaResponsavel;
 
+public Cliente(){
+this.responsavel = new Responsavel();
+}
 
     public String getIdade_corrigida() {
         return idade_corrigida;
@@ -45,5 +47,19 @@ private ArrayList<Responsavel> listaResponsavel;
         this.responsavel = responsavel;
     } 
   
-    
+        public ArrayList<Terapeuta> getListaTerapeutas() {
+        return listaTerapeutas;
+    }
+
+    public void setListaTerapeutas(ArrayList<Terapeuta> listaTerapeutas) {
+        this.listaTerapeutas = listaTerapeutas;
+    }
+
+    public ArrayList<Responsavel> getListaResponsavel() {
+        return listaResponsavel;
+    }
+
+    public void setListaResponsavel(ArrayList<Responsavel> listaResponsavel) {
+        this.listaResponsavel = listaResponsavel;
+    }
 }

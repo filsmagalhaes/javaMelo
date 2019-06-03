@@ -21,7 +21,7 @@ public class DadosAtendimento extends Conexao {
    public void cadastrarAtendimento(Atendimento atend) throws SQLException, Exception {
         //instrucao a ser executada
         String sql = "insert into atendimento (data_atendimento, hora_inicio, hora_fim, " +
-"quantidade_sessoes, descricao_diagnostico, descricao_sessao, valor_sessao, IdTer, IdCli) ";
+        " quantidade_sessoes, descricao_diagnostico, descricao_sessao, valor_sessao, IdTer, IdCli) ";
         sql += " VALUES (?,?,?,?,?,?,?,?,?)";
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
@@ -35,7 +35,7 @@ public class DadosAtendimento extends Conexao {
         preparedStatement.setDouble(7, atend.getValor_sessao());
         preparedStatement.setInt(8, atend.getTerapeuta().getId());
         preparedStatement.setInt(9, atend.getCliente().getId());
-        
+                
         // execute insert SQL stetement
         preparedStatement.executeUpdate();
         //fechando a conexão com o banco de dados
@@ -83,16 +83,16 @@ public class DadosAtendimento extends Conexao {
         
         //instrução sql correspondente a inserção do aluno
         String sql = " select  ";
-        sql += " a.data_atendimento, a.hora_inicio, a.hora_fim, " 
+        sql += " a.id_atendimento, a.data_atendimento, a.hora_inicio, a.hora_fim, " 
         + "a.quantidade_sessoes, a.descricao_diagnostico, a.descricao_sessao, "
         + "a.valor_sessao, " 
-        + "c.cpf_cli, c.idade, c.idade_corrigida, c.data_nasc, c.nome_cli, "
-        + "t.nome_terapeuta ";
+        + "c. idCli, c.cpf_cli, c.idade, c.idade_corrigida, c.data_nasc, c.nome_cli, "
+        + "t.idTer, t.nome_terapeuta ";
         sql += " from atendimento as a ";
         sql += " inner join cliente as c ";
-        sql += " on a.IdCli = c.cpf_cli ";
+        sql += " on a.IdCli = c.idCli ";
         sql += " inner join terapeuta as t "; 
-        sql += " on atend.IdTer = IdTer ";
+        sql += " on a.IdTer = t.IdTer ";
         sql += " where a.id_atendimento > 0 ";
         
         //preparando a instrução
@@ -102,6 +102,7 @@ public class DadosAtendimento extends Conexao {
         //lendo os resultados
         while (leitor.next()) {
             Atendimento atend = new Atendimento();
+            atend.setId(leitor.getInt("id_atendimento"));
             atend.setData_atendimento(leitor.getDate("data_atendimento"));
             atend.setHora_inicio(leitor.getString("hora_inicio"));
             atend.setHora_fim(leitor.getString("hora_fim"));
@@ -111,11 +112,15 @@ public class DadosAtendimento extends Conexao {
             atend.setDescricao_sessao(leitor.getString("descricao_sessao"));
             atend.setValor_sessao(leitor.getDouble("valor_sessao"));
             
+            atend.getCliente().setId(leitor.getInt("idCli")); 
             atend.getCliente().setCpf(leitor.getString("cpf_cli")); 
             atend.getCliente().setIdade(leitor.getString("idade"));
             atend.getCliente().setIdade_corrigida(leitor.getString("idade_corrigida"));
             atend.getCliente().setData_nasc(leitor.getDate("data_nasc"));
             atend.getCliente().setNome(leitor.getString("nome_cli"));
+            
+            atend.getTerapeuta().setId(leitor.getInt("idTer"));            
+            atend.getTerapeuta().setNome(leitor.getString("nome_terapeuta")); 
                                  
             retorno.add(atend);
         }

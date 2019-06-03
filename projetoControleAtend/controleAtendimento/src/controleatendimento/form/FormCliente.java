@@ -22,14 +22,15 @@ import javax.swing.table.DefaultTableModel;
  * @author filip
  */
 public class FormCliente extends javax.swing.JFrame {
-    
-    ArrayList<Responsavel>listaResponsavel;
+
+    ArrayList<Responsavel> listaResponsavel;
 
     /**
      * Creates new form FromCliente
      */
     public FormCliente() {
         initComponents();
+        this.carregarComboResponsavel();
     }
 
     /**
@@ -77,11 +78,11 @@ public class FormCliente extends javax.swing.JFrame {
 
         jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "Responsável"
+                "Nome", "Idade", "Responsável"
             }
         ));
         jScrollPane1.setViewportView(jTableCliente);
@@ -105,8 +106,6 @@ public class FormCliente extends javax.swing.JFrame {
         });
 
         jLabel3.setText("CADASTRO CLIENTE");
-
-        jComboBoxResponsavel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel7.setText("DATA NASCIMENTO:");
 
@@ -213,22 +212,21 @@ public class FormCliente extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         // TODO add your handling code here:  
-        
+
         try {
-        String dataString = jTextFieldDataNasc.getText();
-        DateFormat fmt = new SimpleDateFormat("dd/MM/yyy");
-        java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
-               
-        
+            String dataString = jTextFieldDataNasc.getText();
+            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
+
             Cliente c = new Cliente();
-           
+
             c.setNome(jTextFieldNome.getText());
-            c.setCpf(jTextFieldCpf.getText());           
+            c.setCpf(jTextFieldCpf.getText());
             c.setData_nasc(data);
-            c.setIdade(jTextFieldIdade.getText());   
-            c.setIdade_corrigida(jTextFieldIdadeCorr.getText());         
-            
-            
+            c.setIdade(jTextFieldIdade.getText());
+            c.setIdade_corrigida(jTextFieldIdadeCorr.getText());
+            c.setResponsavel(this.listaResponsavel.get(jComboBoxResponsavel.getSelectedIndex()));
+
             NegocioCliente dados = new NegocioCliente();
             dados.cadastrarCliente(c);
             JOptionPane.showMessageDialog(this, "Cliente cadastrado(a)");
@@ -237,7 +235,7 @@ public class FormCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
- private void carregarComboResponsavel() {
+    private void carregarComboResponsavel() {
         try {
             Responsavel filtro = new Responsavel();
             DadosResponsavel dados = new DadosResponsavel();
@@ -251,30 +249,33 @@ public class FormCliente extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }    
-    
-    
+    }
+
+
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         try {
             Cliente filtro = new Cliente();
-            
+            if (jTextFieldCpf.getText().matches("[0-9]+") == true) {
+                filtro.setCpf(jTextFieldCpf.getText());
+            }
             filtro.setNome(jTextFieldNome.getText());
+            filtro.setIdade(jTextFieldIdade.getText());
             filtro.setNome(jComboBoxResponsavel.getSelectedItem().toString());
-                       
-            
+
             DadosCliente dados = new DadosCliente();
             ArrayList<Cliente> lista = dados.listar(filtro);
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new Object[]{"Nome","Responsavel"});
+            modelo.setColumnIdentifiers(new Object[]{"Nome", "Idade", "Nome"});
             for (Cliente cliente : lista) {
-                modelo.addRow(new Object[]{cliente.getNome()});
-            }            
+                modelo.addRow(new Object[]{cliente.getNome(), cliente.getIdade(), cliente.getResponsavel().getNome()});
+            }
             jTableCliente.setModel(modelo);
             //JOptionPane.showMessageDialog(this, "Aluno cadastrado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     /**

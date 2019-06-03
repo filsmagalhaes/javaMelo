@@ -26,7 +26,7 @@ public class DadosTerapeuta extends Conexao {
         //instrucao a ser executada
         String sql = "INSERT INTO terapeuta (cpf_terapeuta, nome_terapeuta, especialidade, data_nasc, telefone, email, endereco, cidade, "
         + "bairro, complemento, cep, banco, agencia, conta)  ";
-        sql += " VALUES (?,?)";
+        sql += " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         //preparando a instrução
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         //passando os valores para os parametros
@@ -53,6 +53,8 @@ public class DadosTerapeuta extends Conexao {
     
      /**
      * Criando CRUD: Delete
+     * @param ter
+     * @throws java.sql.SQLException
      */
   
   public void removerTerapeuta (Terapeuta ter) throws SQLException, Exception {        
@@ -65,6 +67,8 @@ public class DadosTerapeuta extends Conexao {
     
   /**
      * Criando CRUD: Update
+     * @param ter
+     * @throws java.sql.SQLException
      */
   
       public void atualizarTerapeuta(Terapeuta ter) throws SQLException, Exception {       
@@ -92,6 +96,9 @@ public class DadosTerapeuta extends Conexao {
   
     /**
      * Criando SELECT
+     * @param filtro
+     * @return 
+     * @throws java.lang.Exception
      */
       
  public ArrayList<Terapeuta> listar(Terapeuta filtro) throws Exception {
@@ -118,6 +125,7 @@ public class DadosTerapeuta extends Conexao {
         //lendo os resultados
         while (leitor.next()) {
             Terapeuta terapeuta = new Terapeuta();
+            terapeuta.setId(leitor.getInt("idTer"));
             terapeuta.setCpf(leitor.getString("cpf_terapeuta"));
             terapeuta.setNome(leitor.getString("nome_terapeuta"));
             terapeuta.setEspecialidade(leitor.getString("especialidade"));

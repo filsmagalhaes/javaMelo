@@ -6,13 +6,13 @@
 package controleatendimento.classesBasicas;
 
 import java.sql.Date;
-import java.sql.Time;
+import java.util.ArrayList;
 
 /**
  *
  * @author aluno
  */
-public class Atendimento {
+public class Atendimento extends Pessoa{
     
 private int id_atendimento;
 private Date data_atendimento;
@@ -24,7 +24,10 @@ private String descricao_sessao;
 private double valor_sessao;
 
 private Cliente cliente;    
-private Terapeuta terapeuta;
+private Terapeuta terapeuta;    
+
+private ArrayList<Terapeuta> listaTerapeuta;
+private ArrayList<Cliente> listaCliente;
 
  //construtor
  //qual_visibilidade  mesmo_nome_classe(){}
@@ -44,8 +47,10 @@ private Terapeuta terapeuta;
         retorno += "\ndescricao_sessao: " + this.descricao_sessao;
         retorno += "\nvalor_sessao: " + this.valor_sessao;
         
-        retorno += "\ncpf_cli: " + this.cliente.getCpf();
-        retorno += "\nnome_cli: " + this.cliente.getNome();
+        retorno += "\nidCli: " + this.cliente.getId();
+        retorno += "\nidCli: " + this.cliente.getNome();
+        retorno += "\nidTer: " + this.terapeuta.getId();
+        retorno += "\nidTer: " + this.terapeuta.getNome();
         
         return retorno;
     }
@@ -129,5 +134,21 @@ private Terapeuta terapeuta;
     public void setTerapeuta(Terapeuta terapeuta) {
         this.terapeuta = terapeuta;
     }
+    public ArrayList<Terapeuta> getListaTerapeuta() {
+        return listaTerapeuta;
+    }
+
+    public void setListaTerapeuta(ArrayList<Terapeuta> listaTerapeuta) {
+        this.listaTerapeuta = listaTerapeuta;
+    }
+
+    public ArrayList<Cliente> getListaCliente() {
+        return listaCliente;
+    }
+
+    public void setListaCliente(ArrayList<Cliente> listaCliente) {
+        this.listaCliente = listaCliente;
+    }
+
    
 }

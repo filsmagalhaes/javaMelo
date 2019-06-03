@@ -20,6 +20,8 @@ public class DadosResponsavel extends Conexao{
     
     /**
      * Criando CRUD: Insert
+     * @param resp
+     * @throws java.sql.SQLException
      */
     
   public void cadastrarResponsavel(Responsavel resp) throws SQLException, Exception {
@@ -52,6 +54,8 @@ public class DadosResponsavel extends Conexao{
   
   /**
      * Criando CRUD: Delete
+     * @param resp
+     * @throws java.sql.SQLException
      */
   
   public void removerResponsavel (Responsavel resp) throws SQLException, Exception {        
@@ -66,25 +70,29 @@ public class DadosResponsavel extends Conexao{
   
    /**
      * Criando CRUD: Update
+     * @param resp
+     * @throws java.sql.SQLException
      */
   
       public void atualizarResponsavel(Responsavel resp) throws SQLException, Exception {       
-        String sql = "UPDATE responsavel SET nome_resp = ? WHERE IdResp = ? ";        
+        String sql = "UPDATE responsavel SET cpf_resp = ?, nome_resp = ?, data_nasc = ?, telefone = ?, email = ?, endereco = ?, cidade = ?, "
+        + "bairro = ?, complemento = ?, cep = ?, banco = ?, agencia = ?, conta = ?  WHERE IdResp = ? ";        
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
         
-        preparedStatement.setString(1, resp.getCpf());
-        preparedStatement.setString(2, resp.getNome());
-        preparedStatement.setDate(3, resp.getData_nasc());
-        preparedStatement.setString(4, resp.getTelefone());
-        preparedStatement.setString(5, resp.getEmail());
-        preparedStatement.setString(6, resp.getEndereco());
-        preparedStatement.setString(7, resp.getCidade());
-        preparedStatement.setString(8, resp.getBairro());
-        preparedStatement.setString(9, resp.getComplemento());
-        preparedStatement.setInt(10, resp.getCep());
-        preparedStatement.setString(11, resp.getBanco());
-        preparedStatement.setInt(12, resp.getAgencia());
-        preparedStatement.setInt(13, resp.getConta());
+        preparedStatement.setInt(1, resp.getId());
+        preparedStatement.setString(2, resp.getCpf());
+        preparedStatement.setString(3, resp.getNome());
+        preparedStatement.setDate(4, resp.getData_nasc());
+        preparedStatement.setString(5, resp.getTelefone());
+        preparedStatement.setString(6, resp.getEmail());
+        preparedStatement.setString(7, resp.getEndereco());
+        preparedStatement.setString(8, resp.getCidade());
+        preparedStatement.setString(9, resp.getBairro());
+        preparedStatement.setString(10, resp.getComplemento());
+        preparedStatement.setInt(11, resp.getCep());
+        preparedStatement.setString(12, resp.getBanco());
+        preparedStatement.setInt(13, resp.getAgencia());
+        preparedStatement.setInt(14, resp.getConta());
         
         preparedStatement.executeUpdate();        
         super.desconectar();
@@ -114,7 +122,10 @@ public class DadosResponsavel extends Conexao{
         PreparedStatement preparedStatement = super.conectar().prepareStatement(sql);
 
         if (filtro.getId() > 0) {
-            preparedStatement.setInt(1, filtro.getId());
+           
+        preparedStatement.setInt(1, filtro.getId());
+        
+            
         }
         //executando a instrução sql
         ResultSet leitor = preparedStatement.executeQuery();

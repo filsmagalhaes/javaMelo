@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class Terapeuta extends Pessoa{
 
     private String especialidade;
+
+
     
     private ArrayList<Cliente> listaClientes;
     
@@ -26,6 +28,12 @@ public class Terapeuta extends Pessoa{
         this.especialidade = especialidade;
     }
     
-    
+        public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
     
 }

@@ -11,6 +11,7 @@ import controleatendimento.negocio.NegocioResponsavel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -35,7 +36,7 @@ public class FormResponsavel extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableTerapeuta = new javax.swing.JTable();
+        jTableResponsavel = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldCidade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -64,10 +65,11 @@ public class FormResponsavel extends javax.swing.JFrame {
         jTextFieldFone = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTableTerapeuta.setModel(new javax.swing.table.DefaultTableModel(
+        jTableResponsavel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null}
@@ -76,7 +78,12 @@ public class FormResponsavel extends javax.swing.JFrame {
                 "Nome", "Telefone", "Email"
             }
         ));
-        jScrollPane1.setViewportView(jTableTerapeuta);
+        jTableResponsavel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableResponsavelMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableResponsavel);
 
         jLabel5.setText("CIDADE:");
 
@@ -122,6 +129,13 @@ public class FormResponsavel extends javax.swing.JFrame {
 
         jButton2.setText("CANCELAR");
 
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,7 +157,9 @@ public class FormResponsavel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonListar)))
+                        .addComponent(jButtonListar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEditar)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +264,8 @@ public class FormResponsavel extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar)
-                    .addComponent(jButtonListar))
+                    .addComponent(jButtonListar)
+                    .addComponent(jButtonEditar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
@@ -285,7 +302,7 @@ public class FormResponsavel extends javax.swing.JFrame {
             r.setBanco(jTextFieldBanco.getText());
             r.setAgencia(Integer.parseInt(jTextFieldAgencia.getText()));
             r.setConta(Integer.parseInt(jTextFieldConta.getText()));
-
+            
             NegocioResponsavel dados = new NegocioResponsavel();
             dados.cadastrarResponsavel(r);
             JOptionPane.showMessageDialog(this, "Responsável cadastrado(a)");
@@ -313,12 +330,58 @@ public class FormResponsavel extends javax.swing.JFrame {
             for (Responsavel responsavel : lista) {
                 modelo.addRow(new Object[]{responsavel.getNome(),responsavel.getTelefone(), responsavel.getEmail()});
             }
-            jTableTerapeuta.setModel(modelo);
+            jTableResponsavel.setModel(modelo);
             //JOptionPane.showMessageDialog(this, "Aluno cadastrado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButtonListarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+            
+            Responsavel r  = new Responsavel();
+           
+            r.setNome(jTextFieldNome.getText());
+            r.setCpf(jTextFieldCpf.getText());
+            r.setEndereco(jTextFieldEndereco.getText());
+            r.setComplemento(jTextFieldComplemento.getText());
+            r.setCidade(jTextFieldCidade.getText());
+            r.setBairro(jTextFieldBairro.getText());
+            r.setTelefone(jTextFieldFone.getText());            
+            r.setEmail(jTextFieldMail.getText());            
+            r.setBanco(jTextFieldBanco.getText());
+            r.setAgencia(Integer.parseInt(jTextFieldAgencia.getText()));
+            r.setConta(Integer.parseInt(jTextFieldConta.getText()));
+            
+            DadosResponsavel dados = new DadosResponsavel();
+            dados.atualizarResponsavel(r);
+            JOptionPane.showMessageDialog(this, "Responsável Atualizado(a)");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jTableResponsavelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableResponsavelMouseClicked
+        // TODO add your handling code here:
+        /*
+             Responsavel r  = new Responsavel();
+                     
+            r.setNome(jTextFieldNome.getText());
+            r.setCpf(jTextFieldCpf.getText());
+            r.setEndereco(jTextFieldEndereco.getText());
+            r.setComplemento(jTextFieldComplemento.getText());
+            r.setCidade(jTextFieldCidade.getText());
+            r.setBairro(jTextFieldBairro.getText());
+            r.setTelefone(jTextFieldFone.getText());            
+            r.setEmail(jTextFieldMail.getText());            
+            r.setBanco(jTextFieldBanco.getText());
+            r.setAgencia(Integer.parseInt(jTextFieldAgencia.getText()));
+            r.setConta(Integer.parseInt(jTextFieldConta.getText())); */
+    }//GEN-LAST:event_jTableResponsavelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -359,6 +422,7 @@ public class FormResponsavel extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCadastrar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonListar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -374,7 +438,7 @@ public class FormResponsavel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableTerapeuta;
+    private javax.swing.JTable jTableResponsavel;
     private javax.swing.JTextField jTextFieldAgencia;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldBanco;

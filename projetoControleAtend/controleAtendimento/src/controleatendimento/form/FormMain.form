@@ -62,6 +62,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Atendimento"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCadastroAtendimentoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadastroCliente">
               <Properties>
@@ -103,6 +106,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Atendimentos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemRelatorioAtendActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

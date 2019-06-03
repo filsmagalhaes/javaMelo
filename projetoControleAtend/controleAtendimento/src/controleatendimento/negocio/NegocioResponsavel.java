@@ -15,22 +15,42 @@ import controleatendimento.classesDados.DadosResponsavel;
 public class NegocioResponsavel {
     public void cadastrarResponsavel(Responsavel r) throws Exception {
         if (r == null) {
-            throw new Exception("Informar os dados do aluno");
+            throw new Exception("Informar os dados do resposnsável");
         }
         if (r.getCpf() == null) {
-            throw new Exception("Informar a matricula do aluno");
+            throw new Exception("Informar a matricula do resposnsável");
         }
         if (r.getNome() == null) {
-            throw new Exception("Informar o nome do aluno");
+            throw new Exception("Informar o nome do resposnsável");
         }
         if (r.getNome().trim().equals("") == true) {
-            throw new Exception("Informar o nome do aluno");
+            throw new Exception("Informar o nome do resposnsável");
         }
         if (r.getNome().trim().length() > 100) {
-            throw new Exception("O nome do aluno deverá ter menos de 100 caracteres");
+            throw new Exception("O nome do resposnsável deverá ter menos de 100 caracteres");
         }
         DadosResponsavel dados = new DadosResponsavel();
         dados.cadastrarResponsavel(r);
+    }
+    
+    public void atualizarResponsavel(Responsavel r) throws Exception {
+        if (r == null) {
+            throw new Exception("Informar os dados do resposnsável");
+        }
+        if (r.getCpf() == null) {
+            throw new Exception("Informar a matricula do resposnsável");
+        }
+        if (r.getNome() == null) {
+            throw new Exception("Informar o nome do resposnsável");
+        }
+        if (r.getNome().trim().equals("") == true) {
+            throw new Exception("Informar o nome do resposnsável");
+        }
+        if (r.getNome().trim().length() > 100) {
+            throw new Exception("O nome do resposnsável deverá ter menos de 100 caracteres");
+        }
+        DadosResponsavel dados = new DadosResponsavel();
+        dados.atualizarResponsavel(r);
     }
     
 }
